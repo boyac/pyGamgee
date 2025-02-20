@@ -12,6 +12,7 @@ from langchain.memory import ConversationBufferMemory  # ADD THIS IMPORT
 # Folder path (use absolute path, replace with your actual path)
 data_dir = r"data"
 faiss_index_dir = "faiss_index"
+mymodel = "deepseek-r1:7b"
 
 # Check the initial size
 initial_size = 0
@@ -56,7 +57,7 @@ if not documents:
 
 # Create vector database (Load if exists, otherwise create and save)
 print("Creating vector database")
-embeddings = OllamaEmbeddings(model="deepseek-r1:1.5b")
+embeddings = OllamaEmbeddings(model=mymodel)
 
 if os.path.exists(faiss_index_dir):
     print("Loading FAISS index from disk...")
@@ -80,7 +81,7 @@ else:
 
 # Create QA Chain
 print("Creating QA Chain")
-llm = OllamaLLM(model="deepseek-r1:1.5b")
+llm = OllamaLLM(model=mymodel)
 
 # ADD THIS SECTION:
 use_memory = True  # Set to True to use memory, False to disable it
