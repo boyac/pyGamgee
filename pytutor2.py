@@ -1,4 +1,4 @@
-import os
+import os 
 import fitz  # PyMuPDF
 from langchain_community.document_loaders import TextLoader  # 已修正
 from langchain.text_splitter import CharacterTextSplitter
