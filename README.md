@@ -1,13 +1,13 @@
 # RAG-Based Learning Assistant with Ollama and FAISS
 
-[![GitHub Sponsors](https://img.shields.io/github/sponsors/YOUR_GITHUB_USERNAME?style=for-the-badge)](https://github.com/sponsors/YOUR_GITHUB_USERNAME)
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/YOUR_KOFI_USERNAME)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/boyac?style=for-the-badge)](https://github.com/sponsors/boyac)
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/boyac)
 
 Support this project by becoming a GitHub Sponsor or buying me a coffee!
 
 ## Description
 
-This project implements a Retrieval-Augmented Generation (RAG) based question answering system designed to help students learn and prepare for the AICPA FAR (Financial Accounting & Reporting) exam. It leverages the following technologies:
+This project implements a Retrieval-Augmented Generation (RAG) based question answering system designed to help students, analyst learn and prepare for their studies, exams and analysis. It leverages the following technologies:
 
 *   **Langchain:** A powerful framework for building applications powered by large language models (LLMs).
 *   **Ollama:** Enables running large language models locally, ensuring privacy and offline access.
@@ -62,11 +62,11 @@ Before running this project, ensure you have the following installed:
 
 ## Usage
 
-1.  **Prepare your study materials:** Place your AICPA FAR study notes (in PDF format) in a directory named `data`.
+1.  **Prepare your study materials:** Place your data source (in PDF format) in a directory named `data`.
 
 2.  **Configure the script:**
 
-    *   Modify the `data_dir` variable in the `tutor2.py` script (or your main script file) to point to the correct directory containing your study notes.  Use an absolute path for reliability. Example: `data_dir = r"C:\Users\YourName\Documents\AICPA_FAR_Study"`
+    *   Modify the `data_dir` variable in the `tutor2.py` script (or your main script file) to point to the correct directory containing your study notes.  Use an absolute path for reliability. Example: `data_dir = r"data"`
     *   Ensure Ollama is running with your desired model loaded (e.g., `deepseek-r1:1.5b`).
     *   *Optional:* Adjust the `chunk_size` and `chunk_overlap` parameters in the `CharacterTextSplitter` to optimize retrieval performance for your specific study materials.
 
@@ -78,12 +78,12 @@ Before running this project, ensure you have the following installed:
 
     Replace `tutor2.py` with the actual name of your Python script.
 
-4.  **Start Learning:** A Gradio interface will open in your web browser. Ask questions about AICPA FAR and receive answers based on your study notes!
+4.  **Start Learning:** A Gradio interface will open in your web browser. Ask questions about the materials and receive answers based on your data!
 
 ## Code Overview
 
 *   **`tutor2.py`:** The main script that handles data loading, embedding generation, FAISS indexing, question answering, and the Gradio interface.
-*   **`data/`:** Directory where your AICPA FAR study notes (PDF documents) are stored. **Example file:** `far2024.pdf`
+*   **`data/`:** Directory where your data source (PDF documents) are stored. **Example file:** `far2024.pdf`
 *   **`faiss_index/`:** Directory where the FAISS index is saved (created automatically during the first run).  This allows for faster loading on subsequent runs.
 
 ## Troubleshooting
@@ -108,8 +108,8 @@ Please see `CONTRIBUTING.md` for guidelines.
 
 This project is made possible by the generous support of its users. If you find this project helpful, please consider:
 
-[![GitHub Sponsors](https://img.shields.io/github/sponsors/YOUR_GITHUB_USERNAME?style=for-the-badge)](https://github.com/sponsors/YOUR_GITHUB_USERNAME)
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/YOUR_KOFI_USERNAME)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/boyac?style=for-the-badge)](https://github.com/sponsors/boyac)
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/boyac)
 
 *   Becoming a GitHub Sponsor
 *   Buying me a coffee on Ko-fi
