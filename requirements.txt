@@ -1,0 +1,5 @@
+fitz
+langchain
+langchain-ollama
+faiss-cpu
+langchain-community
