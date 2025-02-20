@@ -1,30 +1,31 @@
-# RAG-Based Question Answering System with Ollama and FAISS
+# RAG-Based Learning Assistant with Ollama and FAISS
 
 ## Description
 
-This project implements a Retrieval-Augmented Generation (RAG) based question answering system using the following technologies:
+This project implements a Retrieval-Augmented Generation (RAG) based question answering system designed to help students learn and prepare for the AICPA FAR (Financial Accounting & Reporting) exam. It leverages the following technologies:
 
-*   **Langchain:**  A framework for building applications powered by large language models (LLMs).
-*   **Ollama:** A tool for running large language models locally.
-*   **FAISS (Facebook AI Similarity Search):** A library for efficient similarity search and clustering of dense vectors.
-*   **PyMuPDF (fitz):** A Python binding for MuPDF, used for reading and extracting text from PDF documents.
+*   **Langchain:** A powerful framework for building applications powered by large language models (LLMs).
+*   **Ollama:** Enables running large language models locally, ensuring privacy and offline access.
+*   **FAISS (Facebook AI Similarity Search):** Provides efficient similarity search for quick retrieval of relevant information from study materials.
+*   **PyMuPDF (fitz):** Used for extracting text from PDF study notes and textbooks.
+*   **Gradio:** Creates an interactive chat interface for easy learning.
 
-The system ingests data from a specified directory, creates embeddings using Ollama, stores the embeddings in a FAISS index, and then uses this index to retrieve relevant information when answering questions. This allows you to ask questions about your documents and receive answers based on the content within those documents.
+The system ingests PDF study notes, creates embeddings using Ollama, stores them in a FAISS index, and then uses this index to answer your questions about the material. This allows for a more interactive and personalized learning experience.
 
 ## Key Features
 
-*   **Local LLM:** Leverages Ollama to run a large language model locally, eliminating the need for cloud-based APIs.
-*   **PDF Support:**  Extracts text from PDF documents using PyMuPDF.
-*   **FAISS Indexing:**  Uses FAISS for fast and efficient similarity search, enabling quick retrieval of relevant document chunks.
-*   **RAG Implementation:**  Combines retrieval and generation to provide context-aware and informative answers.
-*   **Customizable:** Easily adaptable to different data sources and LLMs.
+*   **Localized Knowledge:** Runs entirely on your local machine, keeping your study data private and accessible offline.
+*   **Interactive Chat Interface:** Uses Gradio to provide a user-friendly way to ask questions and receive answers.
+*   **PDF Study Material Support:** Extracts text from PDF study notes, making it easy to learn from existing resources.
+*   **Efficient Retrieval:** FAISS indexing enables quick retrieval of relevant information from your study materials.
+*   **Personalized Learning:** By asking questions, you can explore the material in a way that suits your learning style.
 
 ## Requirements
 
-Before running this project, you need to have the following installed:
+Before running this project, ensure you have the following installed:
 
-*   **Python 3.7+**
-*   **Ollama:** Follow the installation instructions on the [Ollama website](https://ollama.com/). Make sure Ollama is running and the desired model is downloaded.
+*   **Python 3.8+** (Recommended for best compatibility)
+*   **Ollama:** Follow the installation instructions on the [Ollama website](https://ollama.com/). Make sure Ollama is running and your chosen model (e.g., `deepseek-r1:1.5b`) is downloaded. Use `ollama pull deepseek-r1:1.5b` to download the model.
 *   **pip:** Python package installer.
 
 ## Installation
@@ -42,53 +43,62 @@ Before running this project, you need to have the following installed:
     pip install -r requirements.txt
     ```
 
-    *(Create a `requirements.txt` file with the following dependencies, or adapt to your project's actual requirements)*
+    *(Create a `requirements.txt` file with the following dependencies, or adapt to your project's actual requirements. It is highly recommended to use a virtual environment.)*
 
     ```
-    langchain
-    langchain-community
-    langchain-ollama
-    faiss-cpu  # or faiss-gpu if you have a CUDA-enabled GPU
-    pymupdf
-    tqdm
+    langchain==0.1.11  # Or later, test for compatibility
+    langchain-community==0.0.29 # Or later, test for compatibility
+    langchain-ollama==0.0.8   # Or later, test for compatibility
+    faiss-cpu==1.7.4       # Or faiss-gpu if you have a CUDA-enabled GPU
+    pymupdf==1.23.18
+    gradio==4.22.1 # Add Gradio
+    tqdm==4.66.2
     ```
 
 ## Usage
 
-1.  **Prepare your data:** Place the documents you want to use for question answering (e.g., PDF files) in a directory named `data`.
+1.  **Prepare your study materials:** Place your AICPA FAR study notes (in PDF format) in a directory named `data`.
 
 2.  **Configure the script:**
 
-    *   Modify the `data_dir` variable in the script to point to the correct directory containing your data files.
-    *   Ensure that Ollama is running with the desired model loaded. The default model is specified in the script (e.g., `deepseek-r1:1.5b`). You can change this to any model available in Ollama.
+    *   Modify the `data_dir` variable in the `tutor2.py` script (or your main script file) to point to the correct directory containing your study notes.  Use an absolute path for reliability. Example: `data_dir = r"C:\Users\YourName\Documents\AICPA_FAR_Study"`
+    *   Ensure Ollama is running with your desired model loaded (e.g., `deepseek-r1:1.5b`).
+    *   *Optional:* Adjust the `chunk_size` and `chunk_overlap` parameters in the `CharacterTextSplitter` to optimize retrieval performance for your specific study materials.
 
 3.  **Run the script:**
 
     ```bash
-    python your_script_name.py
+    python tutor2.py
     ```
 
-    Replace `your_script_name.py` with the actual name of your Python script.
+    Replace `tutor2.py` with the actual name of your Python script.
 
-4.  **Ask questions:**  The script will load the data, create the FAISS index, and then prompt you to ask a question.  The system will then provide an answer based on the retrieved information.
+4.  **Start Learning:** A Gradio interface will open in your web browser. Ask questions about AICPA FAR and receive answers based on your study notes!
 
 ## Code Overview
 
-*   **`tutor2.py`:**  The main script that handles data loading, embedding generation, FAISS indexing, and question answering.  (Adjust this to your actual script name)
-*   **`data/`:** (example) Directory where your data files (e.g., PDF documents) are stored.
-*   **`faiss_index/`:** Directory where the FAISS index is saved (created automatically).
+*   **`tutor2.py`:** The main script that handles data loading, embedding generation, FAISS indexing, question answering, and the Gradio interface.
+*   **`data/`:** Directory where your AICPA FAR study notes (PDF documents) are stored. **Example file:** `far2024.pdf`
+*   **`faiss_index/`:** Directory where the FAISS index is saved (created automatically during the first run).  This allows for faster loading on subsequent runs.
+
+## Troubleshooting
+
+*   **Slow Response Times:** This may occur for large local language models. Ensure you have enough free RAM available and consider using a smaller Ollama model.
+*   **Gradio Interface Not Loading:**  Make sure Gradio is installed correctly and that your web browser supports JavaScript.
+*   **Errors related to FAISS:** Ensure that `faiss-cpu` (or `faiss-gpu`) is correctly installed.
+*   **Ollama Related Issues:** Make sure `ollama serve` is always running in the background.
 
 ## Contributing
 
-Contributions are welcome! If you find a bug or have an idea for a new feature, please open an issue or submit a pull request.
+Contributions are welcome! If you find a bug, have an idea for a new feature, or want to improve the documentation, please open an issue or submit a pull request.
 
 1.  Fork the repository.
 2.  Create a new branch for your feature or bug fix.
 3.  Make your changes and commit them with descriptive messages.
 4.  Submit a pull request.
 
+Please see `CONTRIBUTING.md` for guidelines.
+
 ## License
 
-[Choose a License - e.g., MIT License]
-
-(Optional:  Include license details here or link to a LICENSE file)****
+This project is licensed under the MIT License - see the `LICENSE` file for details.
