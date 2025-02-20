@@ -12,7 +12,7 @@ from langchain.memory import ConversationBufferMemory  # ADD THIS IMPORT
 # Folder path (use absolute path, replace with your actual path)
 data_dir = r"data"
 faiss_index_dir = "faiss_index"
-mymodel = "deepseek-r1:7b"
+mymodel = "deepseek-r1:1.5b"
 
 # Check the initial size
 initial_size = 0
