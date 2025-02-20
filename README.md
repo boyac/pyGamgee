@@ -1,5 +1,10 @@
 # RAG-Based Learning Assistant with Ollama and FAISS
 
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/YOUR_GITHUB_USERNAME?style=for-the-badge)](https://github.com/sponsors/YOUR_GITHUB_USERNAME)
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/YOUR_KOFI_USERNAME)
+
+Support this project by becoming a GitHub Sponsor or buying me a coffee!
+
 ## Description
 
 This project implements a Retrieval-Augmented Generation (RAG) based question answering system designed to help students learn and prepare for the AICPA FAR (Financial Accounting & Reporting) exam. It leverages the following technologies:
@@ -98,6 +103,16 @@ Contributions are welcome! If you find a bug, have an idea for a new feature, or
 4.  Submit a pull request.
 
 Please see `CONTRIBUTING.md` for guidelines.
+
+## Support
+
+This project is made possible by the generous support of its users. If you find this project helpful, please consider:
+
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/YOUR_GITHUB_USERNAME?style=for-the-badge)](https://github.com/sponsors/YOUR_GITHUB_USERNAME)
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/YOUR_KOFI_USERNAME)
+
+*   Becoming a GitHub Sponsor
+*   Buying me a coffee on Ko-fi
 
 ## License
 
