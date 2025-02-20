@@ -4,7 +4,7 @@ from langchain_community.document_loaders import TextLoader  # 已修正
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_ollama import OllamaEmbeddings
-from langchain_community.llms.ollama import Ollama
+from langchain_ollama import OllamaLLM  # Updated import
 from langchain.chains import RetrievalQA
 from langchain.schema import Document
 
@@ -48,40 +48,50 @@ if not documents:
     exit()
 
 
-# 建立向量資料庫
+# 建立向量資料庫 (Load if exists, otherwise create and save)
 print("開始建立向量資料庫")
 embeddings = OllamaEmbeddings(model="deepseek-r1:1.5b")
 
-# 測試 OllamaEmbeddings
-try:
-    test_embedding = embeddings.embed_query("This is a test.")
-    print(f"嵌入向量長度: {len(test_embedding)}")
-except Exception as e:
-    print(f"OllamaEmbeddings 錯誤: {e}")
-    exit()
+if os.path.exists(faiss_index_dir):
+    print("Loading FAISS index from disk...")
+    try:
+        db = FAISS.load_local(faiss_index_dir, embeddings, allow_dangerous_deserialization=True)  # ADD THIS
+        print("FAISS index loaded successfully.")
+    except Exception as e:
+        print(f"❌ 載入 FAISS 索引失敗: {e}")
+        exit()
 
-try:
-    db = FAISS.from_documents(documents, embeddings)
-    print("成功建立向量資料庫")
-except Exception as e:
-    print(f"❌ 建立向量資料庫失敗: {e}")
-    exit()
+
+else:
+    try:
+        db = FAISS.from_documents(documents, embeddings)
+        print("成功建立向量資料庫")
+
+        # Save the FAISS index to disk
+        os.makedirs(faiss_index_dir, exist_ok=True)  # Ensure the directory exists
+        db.save_local(faiss_index_dir)
+        print(f"FAISS index saved to: {faiss_index_dir}")
+
+    except Exception as e:
+        print(f"❌ 建立向量資料庫失敗: {e}")
+        exit()
+
 
 # 測試 Retriever
 query = "What is cash?"
 print(f"測試 Retriever，問題: {query}")
 retriever = db.as_retriever()
-relevant_docs = retriever.get_relevant_documents(query)
+relevant_docs = retriever.invoke(query)  # Changed to invoke
 
 print(f"Retriever 找到 {len(relevant_docs)} 筆相關文件")
-for i, doc in enumerate(relevant_docs):
-    print(f"--- 文件 {i+1} ---")
-    print(doc.page_content)
-    print(doc.metadata)
+# for i, doc in enumerate(relevant_docs): # Comment out this loop to stop printing the text
+#     print(f"--- 文件 {i+1} ---")
+#     print(doc.page_content)
+#     print(doc.metadata)
 
 # 建立 QA Chain
 print("建立 QA Chain")
-llm = Ollama(model="deepseek-r1:1.5b")
+llm = OllamaLLM(model="deepseek-r1:1.5b")  # Updated usage
 qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever)
 
 # 問題
@@ -90,7 +100,7 @@ print(f"問題: {query}")
 
 # 執行 QA
 try:
-    response = qa.run(query)
+    response = qa.invoke(query)
     print(f"回答: {response}")
 except Exception as e:
     print(f"❌ 執行 QA 失敗: {e}")
