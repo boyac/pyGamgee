@@ -8,8 +8,8 @@ We welcome contributions to this project! Whether you're a seasoned developer, a
 2.  **Clone your fork:** Clone the repository to your local machine:
 
     ```bash
-    git clone https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME.git
-    cd YOUR_REPOSITORY_NAME
+    git clone https://github.com/boyac/pyTutor.git
+    cd pyTutor
     ```
 
     Replace `YOUR_GITHUB_USERNAME` and `YOUR_REPOSITORY_NAME` with your GitHub username and the repository name, respectively.
