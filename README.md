@@ -1,33 +1,94 @@
-# pyTutor
+# RAG-Based Question Answering System with Ollama and FAISS
 
-for AICPA study
+## Description
 
-### 📂 data/                    
-存放 CPA FAR 課本、筆記、題庫等資料。
-- 📄 Becker_FAR.pdf  
-- 📄 Gleim_Notes.docx  
-- 📄 FAR_Exam_MCQs.csv  
-- 📄 自己整理的筆記.txt  
+This project implements a Retrieval-Augmented Generation (RAG) based question answering system using the following technologies:
 
-### 📂 models/                  
-存放 DeepSeek 模型或其他用於推理的模型。
-- 📂 deepseek-mistral-7b/  
+*   **Langchain:**  A framework for building applications powered by large language models (LLMs).
+*   **Ollama:** A tool for running large language models locally.
+*   **FAISS (Facebook AI Similarity Search):** A library for efficient similarity search and clustering of dense vectors.
+*   **PyMuPDF (fitz):** A Python binding for MuPDF, used for reading and extracting text from PDF documents.
 
-### 📂 embeddings/              
-儲存已解析的知識並創建向量索引，用於快速查詢。
-- 📄 index.json  
+The system ingests data from a specified directory, creates embeddings using Ollama, stores the embeddings in a FAISS index, and then uses this index to retrieve relevant information when answering questions. This allows you to ask questions about your documents and receive answers based on the content within those documents.
 
-### 🖥️ app.py                       
-主程式，用來啟動 AI Tutor，提供用戶介面與功能。
+## Key Features
 
-### 📝 ingest.py                    
-讀取並處理 CPA FAR 資料，將其轉換成適合進行索引和查詢的格式。
+*   **Local LLM:** Leverages Ollama to run a large language model locally, eliminating the need for cloud-based APIs.
+*   **PDF Support:**  Extracts text from PDF documents using PyMuPDF.
+*   **FAISS Indexing:**  Uses FAISS for fast and efficient similarity search, enabling quick retrieval of relevant document chunks.
+*   **RAG Implementation:**  Combines retrieval and generation to provide context-aware and informative answers.
+*   **Customizable:** Easily adaptable to different data sources and LLMs.
 
-### 🔎 query.py                     
-問答引擎，提供查詢功能，讓使用者可以向 AI Tutor 發問。
+## Requirements
 
-### 📜 requirements.txt             
-列出所有需要安裝的 Python 套件，以便於安裝與環境配置。
+Before running this project, you need to have the following installed:
 
-### 📑 README.md                    
-專案介紹文件，包含如何使用 AICPA Tutor 的說明。
+*   **Python 3.7+**
+*   **Ollama:** Follow the installation instructions on the [Ollama website](https://ollama.com/). Make sure Ollama is running and the desired model is downloaded.
+*   **pip:** Python package installer.
+
+## Installation
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone [YOUR_REPOSITORY_URL]
+    cd [YOUR_REPOSITORY_NAME]
+    ```
+
+2.  **Install the required Python packages:**
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+    *(Create a `requirements.txt` file with the following dependencies, or adapt to your project's actual requirements)*
+
+    ```
+    langchain
+    langchain-community
+    langchain-ollama
+    faiss-cpu  # or faiss-gpu if you have a CUDA-enabled GPU
+    pymupdf
+    tqdm
+    ```
+
+## Usage
+
+1.  **Prepare your data:** Place the documents you want to use for question answering (e.g., PDF files) in a directory named `data`.
+
+2.  **Configure the script:**
+
+    *   Modify the `data_dir` variable in the script to point to the correct directory containing your data files.
+    *   Ensure that Ollama is running with the desired model loaded. The default model is specified in the script (e.g., `deepseek-r1:1.5b`). You can change this to any model available in Ollama.
+
+3.  **Run the script:**
+
+    ```bash
+    python your_script_name.py
+    ```
+
+    Replace `your_script_name.py` with the actual name of your Python script.
+
+4.  **Ask questions:**  The script will load the data, create the FAISS index, and then prompt you to ask a question.  The system will then provide an answer based on the retrieved information.
+
+## Code Overview
+
+*   **`tutor2.py`:**  The main script that handles data loading, embedding generation, FAISS indexing, and question answering.  (Adjust this to your actual script name)
+*   **`data/`:** (example) Directory where your data files (e.g., PDF documents) are stored.
+*   **`faiss_index/`:** Directory where the FAISS index is saved (created automatically).
+
+## Contributing
+
+Contributions are welcome! If you find a bug or have an idea for a new feature, please open an issue or submit a pull request.
+
+1.  Fork the repository.
+2.  Create a new branch for your feature or bug fix.
+3.  Make your changes and commit them with descriptive messages.
+4.  Submit a pull request.
+
+## License
+
+[Choose a License - e.g., MIT License]
+
+(Optional:  Include license details here or link to a LICENSE file)****
