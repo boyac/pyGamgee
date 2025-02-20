@@ -33,6 +33,20 @@ Before running this project, ensure you have the following installed:
 *   **Ollama:** Follow the installation instructions on the [Ollama website](https://ollama.com/). Make sure Ollama is running and your chosen model (e.g., `deepseek-r1:1.5b`) is downloaded. Use `ollama pull deepseek-r1:1.5b` to download the model.
 *   **pip:** Python package installer.
 
+## Hardware Upgrade Recommendations
+
+While the current model (`deepseek-r1:1.5b`) works well for basic learning and analysis, if you require higher accuracy or need to run larger models, we recommend upgrading your hardware to support models that require 80GB+ of GPU memory. This will significantly improve the accuracy and performance of your system.
+
+### Recommended Actions:
+- **Upgrade your GPU:** For larger models such as `deepseek-r1:70b`, your GPU must have at least 80GB of VRAM. Additionally, multiple GPUs will be needed for parallel processing to achieve optimal performance.
+- **Choose a higher precision model:** If you're aiming for more advanced, accurate results, upgrading to models like `deepseek-r1:70b` will provide much better outputs, but they require more powerful hardware to run effectively.
+
+### How to Upgrade:
+- **Use the Ollama command to pull larger models:**
+   ```bash
+   ollama pull deepseek-r1:70b
+   ```
+
 ## Installation
 
 1.  **Clone the repository:**
