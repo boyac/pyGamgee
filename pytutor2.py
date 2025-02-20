@@ -1,16 +1,23 @@
-import os 
+import os
 import fitz  # PyMuPDF
-from langchain_community.document_loaders import TextLoader  # 已修正
+from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_ollama import OllamaEmbeddings
-from langchain_ollama import OllamaLLM  # Updated import
+from langchain_ollama import OllamaLLM
 from langchain.chains import RetrievalQA
 from langchain.schema import Document
+from langchain.memory import ConversationBufferMemory  # ADD THIS IMPORT
 
 # 資料夾路徑 (使用絕對路徑，請替換為你的實際路徑)
-data_dir = r"data"  # r 前綴表示 raw string
+data_dir = r"data"
 faiss_index_dir = "faiss_index"
+
+# Check the initial size
+initial_size = 0
+if os.path.exists(os.path.join(faiss_index_dir, "index.faiss")):
+    initial_size = os.path.getsize(os.path.join(faiss_index_dir, "index.faiss"))
+print(f"Initial FAISS index size: {initial_size} bytes")
 
 # 載入資料
 documents = []
@@ -47,7 +54,6 @@ if not documents:
     print("❌ 分割後沒有任何文件，請檢查文件內容和切割設定")
     exit()
 
-
 # 建立向量資料庫 (Load if exists, otherwise create and save)
 print("開始建立向量資料庫")
 embeddings = OllamaEmbeddings(model="deepseek-r1:1.5b")
@@ -55,54 +61,84 @@ embeddings = OllamaEmbeddings(model="deepseek-r1:1.5b")
 if os.path.exists(faiss_index_dir):
     print("Loading FAISS index from disk...")
     try:
-        db = FAISS.load_local(faiss_index_dir, embeddings, allow_dangerous_deserialization=True)  # ADD THIS
+        db = FAISS.load_local(faiss_index_dir, embeddings, allow_dangerous_deserialization=True)
         print("FAISS index loaded successfully.")
     except Exception as e:
         print(f"❌ 載入 FAISS 索引失敗: {e}")
         exit()
-
-
 else:
     try:
         db = FAISS.from_documents(documents, embeddings)
         print("成功建立向量資料庫")
-
         # Save the FAISS index to disk
         os.makedirs(faiss_index_dir, exist_ok=True)  # Ensure the directory exists
         db.save_local(faiss_index_dir)
         print(f"FAISS index saved to: {faiss_index_dir}")
-
     except Exception as e:
         print(f"❌ 建立向量資料庫失敗: {e}")
         exit()
 
-
-# 測試 Retriever
-query = "What is cash?"
-print(f"測試 Retriever，問題: {query}")
-retriever = db.as_retriever()
-relevant_docs = retriever.invoke(query)  # Changed to invoke
-
-print(f"Retriever 找到 {len(relevant_docs)} 筆相關文件")
-# for i, doc in enumerate(relevant_docs): # Comment out this loop to stop printing the text
-#     print(f"--- 文件 {i+1} ---")
-#     print(doc.page_content)
-#     print(doc.metadata)
-
-# 建立 QA Chain
+#建立 QA Chain
 print("建立 QA Chain")
-llm = OllamaLLM(model="deepseek-r1:1.5b")  # Updated usage
-qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever)
+llm = OllamaLLM(model="deepseek-r1:1.5b")
 
-# 問題
-query = "What is the heavily tested areas in AICPA FAR？"
-print(f"問題: {query}")
+# ADD THIS SECTION:
+use_memory = True  # Set to True to use memory, False to disable it
 
-# 執行 QA
-try:
-    response = qa.invoke(query)
-    print(f"回答: {response}")
-except Exception as e:
-    print(f"❌ 執行 QA 失敗: {e}")
+memory = None  # Initialize memory to None
+if use_memory:
+    memory = ConversationBufferMemory(
+        llm=llm,
+        memory_key="chat_history",
+        return_messages=True,
+        output_key='result'  # Specify the output key
+    )
 
-print("程式執行完畢")
+qa_chain = RetrievalQA.from_chain_type(
+    llm,
+    chain_type="stuff",
+    retriever=db.as_retriever(),
+    memory=memory if use_memory else None,  # Pass memory conditionally
+    return_source_documents=True
+)
+
+def pretty_print_docs(documents):
+    print(f"\n{'-' * 100}\n".join(f"Document {i+1}:\n\n" + d.page_content for i, d in enumerate(documents)))
+
+
+if __name__ == "__main__":
+	# 問題
+	prompt = """
+	500 words summary for FAR.
+
+	"""
+
+	query = prompt  # Simplified question
+	print(f"問題: {query}")
+
+	try:
+	    result = qa_chain.invoke({"query": query})
+
+	    print(f"回答: {result['result']}")
+
+	    if 'source_documents' in result:
+	        print("\nSource Documents:")
+	        pretty_print_docs(result['source_documents'])
+	    else:
+	        print("\nNo source documents found.")
+
+	    if use_memory:
+	        # **ADD THIS SECTION TO PRINT THE MEMORY**
+	        print("\n--- Conversation History ---")
+	        # Print the memory ONLY if it exists (use_memory is True)
+	        print(memory.load_memory_variables({}))  # Check the memory here
+
+	except Exception as e:
+	    print(f"❌ 執行 QA 失敗: {e}")
+
+	print("程式執行完畢")
+	# Check the size
+	final_size = 0
+	if os.path.exists(os.path.join(faiss_index_dir, "index.faiss")):
+	    final_size = os.path.getsize(os.path.join(faiss_index_dir, "index.faiss"))
+	print(f"Final FAISS index size: {final_size} bytes")
