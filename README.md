@@ -104,6 +104,23 @@ Contributions are welcome! If you find a bug, have an idea for a new feature, or
 
 Please see `CONTRIBUTING.md` for guidelines.
 
+## Future Directions and Potential Features
+
+I have several ideas for future enhancements to this project, but limited time to implement them myself. I'd love to hear your feedback and welcome contributions!
+
+*   **Incremental Indexing:** Implement incremental updates to the FAISS index, allowing for faster updates when new data is added.
+*   **Support for More File Types:** Add support for other document and media formats, such as DOCX, TXT, CSV, JPG, MP3, and MP4.
+*   **Improved UI/UX:** Enhance the Gradio interface with features like:
+    *   A loading indicator during long-running operations.
+    *   A more visually appealing design.
+    *   Options for customizing the LLM and other settings.
+*   **More Advanced Memory Management:** Explore different memory types in Langchain to optimize performance.
+*   **Personalized learning paths:**  The system could track the student's strengths and weaknesses and recommend specific topics to study.
+*   **Adaptive questioning:** The system could adjust the difficulty of the questions based on the student's performance.
+*   **Feedback and encouragement:** The system could provide feedback on the student's answers and offer encouragement to keep them motivated.
+*   **API Endpoint:** Expose a way to call this chatbot, rather than just running it as a GUI.
+
+These are just a few ideas, and I'm open to suggestions and contributions from the community!
 ## Support
 
 This project is made possible by the generous support of its users. If you find this project helpful, please consider:
