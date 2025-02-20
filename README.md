@@ -73,7 +73,7 @@ Before running this project, ensure you have the following installed:
 3.  **Run the script:**
 
     ```bash
-    python tutor2.py
+    python pytutor2.py
     ```
 
     Replace `tutor2.py` with the actual name of your Python script.
