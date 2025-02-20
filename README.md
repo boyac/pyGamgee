@@ -38,8 +38,8 @@ Before running this project, ensure you have the following installed:
 1.  **Clone the repository:**
 
     ```bash
-    git clone [YOUR_REPOSITORY_URL]
-    cd [YOUR_REPOSITORY_NAME]
+    git clone https://github.com/boyac/pyTutor.git
+    cd pyTutor
     ```
 
 2.  **Install the required Python packages:**
