@@ -90,13 +90,11 @@ While the current model (`deepseek-r1:1.5b`) works well for basic learning and a
     python pytutor2.py
     ```
 
-    Replace `tutor2.py` with the actual name of your Python script.
-
 4.  **Start Learning:** A Gradio interface will open in your web browser. Ask questions about the materials and receive answers based on your data!
 
 ## Code Overview
 
-*   **`tutor2.py`:** The main script that handles data loading, embedding generation, FAISS indexing, question answering, and the Gradio interface.
+*   **`pytutor2.py`:** The main script that handles data loading, embedding generation, FAISS indexing, question answering, and the Gradio interface.
 *   **`data/`:** Directory where your data source (PDF documents) are stored. **Example file:** `far2024.pdf`
 *   **`faiss_index/`:** Directory where the FAISS index is saved (created automatically during the first run).  This allows for faster loading on subsequent runs.
 
