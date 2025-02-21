@@ -76,7 +76,7 @@ While the current model (`deepseek-r1:1.5b`) works well for basic learning and a
     pip install -r requirements.txt
     ```
 
-   *It is highly recommended to use a virtual environment.)*
+   *It is highly recommended to use a virtual environment.*
 
 
 ## Usage
