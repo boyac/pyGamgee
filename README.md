@@ -52,8 +52,8 @@ While the current model (`deepseek-r1:1.5b`) works well for basic learning and a
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/boyac/pyTutor.git
-    cd pyTutor
+    git clone https://github.com/boyac/pyGamgee.git
+    cd pyGamgee
     ```
 
 2.  **Install the required Python packages:**
@@ -80,21 +80,21 @@ While the current model (`deepseek-r1:1.5b`) works well for basic learning and a
 
 2.  **Configure the script:**
 
-    *   Modify the `data_dir` variable in the `tutor2.py` script (or your main script file) to point to the correct directory containing your study notes.  Use an absolute path for reliability. Example: `data_dir = r"data"`
+    *   Modify the `data_dir` variable in the `pygamgee.py` script (or your main script file) to point to the correct directory containing your study notes.  Use an absolute path for reliability. Example: `data_dir = r"data"`
     *   Ensure Ollama is running with your desired model loaded (e.g., `deepseek-r1:1.5b`).
     *   *Optional:* Adjust the `chunk_size` and `chunk_overlap` parameters in the `CharacterTextSplitter` to optimize retrieval performance for your specific study materials.
 
 3.  **Run the script:**
 
     ```bash
-    python pytutor2.py
+    python pygamgee.py
     ```
 
 4.  **Start Learning:** A Gradio interface will open in your web browser. Ask questions about the materials and receive answers based on your data!
 
 ## Code Overview
 
-*   **`pytutor2.py`:** The main script that handles data loading, embedding generation, FAISS indexing, question answering, and the Gradio interface.
+*   **`pygamgee.py`:** The main script that handles data loading, embedding generation, FAISS indexing, question answering, and the Gradio interface.
 *   **`data/`:** Directory where your data source (PDF documents) are stored. **Example file:** `far2024.pdf`
 *   **`faiss_index/`:** Directory where the FAISS index is saved (created automatically during the first run).  This allows for faster loading on subsequent runs.
 
