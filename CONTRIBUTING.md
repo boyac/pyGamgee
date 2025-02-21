@@ -8,11 +8,10 @@ We welcome contributions to this project! Whether you're a seasoned developer, a
 2.  **Clone your fork:** Clone the repository to your local machine:
 
     ```bash
-    git clone https://github.com/boyac/pyTutor.git
-    cd pyTutor
+    git clone https://github.com/boyac/pyGamgee.git
+    cd pyGamgee
     ```
 
-    Replace `YOUR_GITHUB_USERNAME` and `YOUR_REPOSITORY_NAME` with your GitHub username and the repository name, respectively.
 3.  **Create a new branch:** Create a new branch for your feature or bug fix:
 
     ```bash
