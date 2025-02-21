@@ -64,17 +64,8 @@ While the current model (`deepseek-r1:1.5b`) works well for basic learning and a
     pip install -r requirements.txt
     ```
 
-    *(Create a `requirements.txt` file with the following dependencies, or adapt to your project's actual requirements. It is highly recommended to use a virtual environment.)*
+   *It is highly recommended to use a virtual environment.)*
 
-    ```
-    langchain==0.1.11  # Or later, test for compatibility
-    langchain-community==0.0.29 # Or later, test for compatibility
-    langchain-ollama==0.0.8   # Or later, test for compatibility
-    faiss-cpu==1.7.4       # Or faiss-gpu if you have a CUDA-enabled GPU
-    pymupdf==1.23.18
-    gradio==4.22.1 # Add Gradio
-    tqdm==4.66.2
-    ```
 
 ## Usage
 
