@@ -5,7 +5,7 @@
 
 Support this project by becoming a GitHub Sponsor or buying me a coffee!
 
-![PyGamgee Logo](assets/logo.PNG)
+![PyGamgee Logo](assets/logo.png)
 
 ## Description
 
