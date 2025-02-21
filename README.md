@@ -5,6 +5,8 @@
 
 Support this project by becoming a GitHub Sponsor or buying me a coffee!
 
+![PyGamgee Logo](assets/logo.PNG)
+
 ## Description
 
 This project implements a Retrieval-Augmented Generation (RAG) based question answering system designed to help students, analyst learn and prepare for their studies, exams and analysis. It leverages the following technologies:
