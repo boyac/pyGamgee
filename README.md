@@ -10,15 +10,14 @@ Support this project by becoming a GitHub Sponsor or buying me a coffee!
 # PyGamgee: A RAG-Based Learning Assistant
 
 ## About  
-This project was born from my desire to enhance how we interact with information and make learning more efficient. With the rise of **open-source language models**, I saw an opportunity to quickly access and process knowledge from various sources in a more **personalized** and **interactive** way. While the model I'm currently using is relatively small, it's already proven effective in helping me retrieve relevant information for studying, decision-making, and in-depth analysis.
+This project aims to enhance how we interact with information and make learning more efficient by leveraging **open-source language models**. While the current model is small, it’s effective for retrieving relevant information for **studying**, **decision-making**, and **analysis**. The system operates **locally**, ensuring **privacy** and **offline access** without relying on cloud services.
 
-The system operates **locally**, ensuring **privacy** and **offline access**, making it a versatile tool for anyone looking to extract meaningful insights from their materials without relying on cloud-based services.
+Initially designed for **personal use**, I believe the project can support a wide range of users, from **professionals** staying updated on industry trends to **hobbyists** exploring new topics. Moving forward, I plan to improve the system with more advanced features and welcome **contributions** from others.
 
-Although it started for **personal use**, I believe this project could support a wide range of individuals—from **professionals** seeking to stay on top of industry trends to **hobbyists** exploring new topics. Moving forward, I hope to continue improving the system with more advanced features, and I would be open to any contributions or ideas from others who find the project valuable and want to help improve it.
+Named *PyGamgee* in homage to **Samwise Gamgee** from *The Lord of the Rings*, the project may seem humble, but its goal is to **assist** and **empower** users in their journey to master knowledge and make informed decisions.
 
-The project is named *PyGamgee* in homage to **Samwise Gamgee**, the beloved hobbit from *The Lord of the Rings*. Like Sam, who played a quiet yet essential role in the success of the quest, this tool may seem humble in its current form, but it is built with a powerful purpose: to assist, support, and empower users in their journey to master knowledge and make informed decisions.
+Ultimately, this project reflects my belief in accessible technology that streamlines knowledge acquisition and supports users in applying information that drives growth and learning. By making it **open-source**, I hope others will contribute to improving and adapting it to their needs.
 
-Ultimately, this project reflects my belief in the power of **accessible technology** to streamline knowledge acquisition, enabling users to focus on what truly matters—**understanding and applying** the information that drives growth, innovation, and learning. By making it open source, I hope others may eventually take the opportunity to improve, extend, and adapt it to their needs.
 
 ## Description
 
