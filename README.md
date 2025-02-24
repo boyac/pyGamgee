@@ -149,5 +149,4 @@ This project is made possible by the generous support of its users. If you find 
 *   Buying me a coffee on Ko-fi
 
 ## License
-
-This project is licensed under the MIT License - see the `LICENSE` file for details.
+This project is licensed under a modified MIT License - see the `LICENSE` file for full details.
