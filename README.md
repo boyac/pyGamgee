@@ -2,7 +2,6 @@
 
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/boyac?style=for-the-badge)](https://github.com/sponsors/boyac)
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/boyac)
-![Downloads](https://img.shields.io/github/downloads/boyac/pyGamgee/total)
 
 Support this project by becoming a GitHub Sponsor or buying me a coffee!
 
@@ -145,7 +144,7 @@ This project is made possible by the generous support of its users. If you find 
 
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/boyac?style=for-the-badge)](https://github.com/sponsors/boyac)
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/boyac)
-
+![Downloads](https://img.shields.io/github/downloads/boyac/pyGamgee/total)
 *   Becoming a GitHub Sponsor
 *   Buying me a coffee on Ko-fi
 
