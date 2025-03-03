@@ -7,7 +7,7 @@ Support this project by becoming a GitHub Sponsor or buying me a coffee!
 
 ![PyGamgee Logo](assets/logo.png)
 
-# PyGamgee 小僕人: A RAG-Based Learning Assistant
+# PyGamgee: A RAG-Based Learning Assistant
 
 ## About  
 This project aims to enhance how we interact with information and make learning more efficient by leveraging **open-source language models**. While the current model is small, it’s effective for retrieving relevant information for **studying**, **decision-making**, and **analysis**. The system operates **locally**, ensuring **privacy** and **offline access** without relying on cloud services.
